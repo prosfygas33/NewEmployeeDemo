@@ -21,5 +21,5 @@ public final class Business {
         return id;
     }
 
-    
+
 }

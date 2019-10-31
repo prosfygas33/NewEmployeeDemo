@@ -28,10 +28,10 @@ public class DemoApplication implements CommandLineRunner //to run code in appli
 		Employees kostis = new Employees(1, "Giannopoulos", "Kostis", "salaminos 85", 1234, new Date(2017, Calendar.JANUARY, 17), new Date(2019, Calendar.FEBRUARY, 17),
 				"ACTIVE", "ACTIVE", "IT");
 
-
+		Employees george=new Employees(3,"Karavitis","George","Olynthou 31",5545254,new Date(2017, Calendar.MARCH, 14),null,"ACTIVE","ACTIVE","Manager");
 
 		employeeRepository.save(kostis);
-
+		employeeRepository.save(george);
 
 	}
 
