@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Company {
+public final class Company {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,7 +20,4 @@ public class Company {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
 }

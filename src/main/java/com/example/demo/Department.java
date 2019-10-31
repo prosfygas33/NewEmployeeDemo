@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 
 @Entity
-public class Department {
+public final class Department {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,15 +27,9 @@ public class Department {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getDesc() {
         return desc;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
 }

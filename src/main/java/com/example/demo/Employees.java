@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-public class Employees extends  Department  {
+public class Employees  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
