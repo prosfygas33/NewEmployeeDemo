@@ -23,13 +23,13 @@ public class DemoApplication implements CommandLineRunner //to run code in appli
 
 	public void run(String... args) throws Exception {
 
-        Company unisystems=new Company();
-        Department technology=new Department();
+
+        Department room1=new Department("Technology");
 
 		Employees kostis = new Employees(1, "Giannopoulos", "Kostis", "salaminos 85", 1234, new Date(2017, Calendar.JANUARY, 17), new Date(2019, Calendar.FEBRUARY, 17),
 				"ACTIVE", "ACTIVE", "IT");
 
-        kostis.setDepartment(technology);
+        kostis.setDepartment(room1);
 
 		employeeRepository.save(kostis);
 

@@ -11,10 +11,16 @@ public class Department {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @Column(name="description")
+    private  String desc;
 
 
     public Department(){
 
+    }
+
+    public Department(String desc) {
+        this.desc = desc;
     }
 
     public long getId() {
@@ -23,5 +29,13 @@ public class Department {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 }

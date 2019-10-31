@@ -28,7 +28,8 @@ public class Employees extends  Department  {
     @ManyToOne
     private Business business;
 
-    @ManyToOne
+
+    @ManyToOne(cascade = {CascadeType.ALL})
     private Department department;
 
     @ManyToOne
