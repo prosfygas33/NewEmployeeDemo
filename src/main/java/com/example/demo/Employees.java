@@ -1,6 +1,8 @@
 package com.example.demo;
 
 
+
+
 import javax.persistence.*;
 
 import java.util.Date;
@@ -22,7 +24,7 @@ public class Employees  {
     private String status;
     private String contract;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     private  Company company;
 
     @ManyToOne

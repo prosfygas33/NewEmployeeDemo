@@ -19,6 +19,7 @@ public final class Department {
 
     }
 
+
     public Department(String desc) {
         this.desc = desc;
     }
