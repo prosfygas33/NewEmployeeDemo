@@ -16,9 +16,4 @@ public class Units implements Serializable {
     private long id;
 
     private String name;
-
-    public Units(final long id, final String name) {
-        this.id = id;
-        this.name = name;
-    }
 }

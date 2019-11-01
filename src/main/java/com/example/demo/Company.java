@@ -14,15 +14,6 @@ public final class Company implements Serializable {
     @Column(name="Name")
     private String name;
 
-    public Company(final long id, final String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    public Company(String name) {
-        this.name = name;
-    }
-
     public long getId() {
         return id;
     }

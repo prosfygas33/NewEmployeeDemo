@@ -12,16 +12,27 @@ import java.util.Optional;
 @SpringBootApplication
 public class DemoApplication implements CommandLineRunner //to run code in application start up
 {
-	final
+
+	/* Remove Autowire in order not to have circular dependecies*/
+	private final
 	EmployeeRepository employeeRepository;
 
-	final
+	private final
 	DepartmentRepository departmentRepository;
 
-	public DemoApplication(final EmployeeRepository employeeRepository,
-			final DepartmentRepository departmentRepository) {
+	private final CompanyRepository companyRepository;
+
+	private final BusinessRepository businessRepository;
+
+	private final UnitsRepository unitsRepository;
+
+	public DemoApplication(final EmployeeRepository employeeRepository, final DepartmentRepository departmentRepository,
+			final CompanyRepository companyRepository, final BusinessRepository businessRepository, final UnitsRepository unitsRepository) {
 		this.employeeRepository = employeeRepository;
 		this.departmentRepository = departmentRepository;
+		this.companyRepository = companyRepository;
+		this.businessRepository = businessRepository;
+		this.unitsRepository = unitsRepository;
 	}
 
 	public static void main(String[] args) {
@@ -30,12 +41,10 @@ public class DemoApplication implements CommandLineRunner //to run code in appli
 
 	public void run(String... args) throws Exception {
 
-		Company newCompany = new Company(1, "Unisystems");
-		Business newBusiness = new Business(1, "Consulting");
-		Department newDepartment = departmentRepository.findById(2L).orElseThrow(() -> new RuntimeException("Wrong query in database"));
-
-
-		Units newUnit = new Units(1, "Unit 1");
+		Company newCompany = companyRepository.findById(1L).orElseThrow(() -> new RuntimeException("Wrong query in database Company"));
+		Business newBusiness = businessRepository.findById(1L).orElseThrow(() -> new RuntimeException("Wrong query in database Business"));;
+		Department newDepartment = departmentRepository.findById(1L).orElseThrow(() -> new RuntimeException("Wrong query in database Department"));
+		Units newUnit = unitsRepository.findById(1L).orElseThrow(() -> new RuntimeException("Wrong query in database Department"));
 
 		Employees kostis = new Employees(1, "Giannopoulos", "Kostis", "salaminos 85", 1234, new Date(2017, Calendar.JANUARY, 17),
 				new Date(2019, Calendar.FEBRUARY, 17),

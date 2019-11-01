@@ -17,18 +17,8 @@ public final class Business implements Serializable {
 
     private String name;
 
-    public Business(final long id, final String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    public Business(){
-
-    }
-
     public long getId() {
         return id;
     }
-
 
 }
