@@ -1,23 +1,20 @@
 package com.example.demo;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 @Entity
-public final class Company {
+public final class Company implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  long id;
 
     @Column(name="Name")
     private String name;
 
-
-    public Company(){
-
-    }
-
-    public Company(long id, String name) {
+    public Company(final long id, final String name) {
         this.id = id;
         this.name = name;
     }

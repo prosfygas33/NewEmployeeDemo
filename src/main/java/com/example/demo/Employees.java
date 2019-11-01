@@ -1,180 +1,187 @@
 package com.example.demo;
 
-
-
-
 import javax.persistence.*;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-public class Employees  {
+public class Employees implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
 
-    private int  entryNumber;
-    private String lastName;
-    private String firstName;
-    private String address;
-    private int phone;
-    private Date hireDate;
-    private  Date fireDate;
-    private String status;
-    private String contract;
+	private int entryNumber;
+	private String lastName;
+	private String firstName;
+	private String address;
+	private int phone;
+	private Date hireDate;
+	private Date fireDate;
+	private String status;
+	private String contract;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
-    private  Company company;
+    @Transient
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Company company;
 
-    @ManyToOne
-    private Business business;
+	@Transient
+	@ManyToOne(cascade = {CascadeType.ALL})
+	private Business business;
 
+	@ManyToOne(cascade = {CascadeType.DETACH})
+	private Department department;
 
-    @ManyToOne(cascade = {CascadeType.ALL})
-    private Department department;
+    @Transient
+	@ManyToOne(cascade = {CascadeType.ALL})
+	private Units units;
 
-    @ManyToOne
-    private Units units;
+	private String position;
 
-    private String position;
+	public Employees() {
 
+	}
 
-    public Employees(){
+	public Employees(final int entryNumber, final String lastName, final String firstName, final String address, final int phone,
+            final Date hireDate,
+			final Date fireDate, final String status,
+			final String contract, final Company company, final Business business, final Department department, final Units units,
+			final String position) {
+		this.entryNumber = entryNumber;
+		this.lastName = lastName;
+		this.firstName = firstName;
+		this.address = address;
+		this.phone = phone;
+		this.hireDate = hireDate;
+		this.fireDate = fireDate;
+		this.status = status;
+		this.contract = contract;
+		this.company = company;
+		this.business = business;
+		this.department = department;
+		this.units = units;
+		this.position = position;
+	}
 
-    }
+	public long getId() {
+		return id;
+	}
 
-    public Employees(int entryNumber, String lastName, String firstName, String address, int phone, Date hireDate, Date fireDate, String status, String contract, String position) {
-        this.entryNumber = entryNumber;
-        this.lastName = lastName;
-        this.firstName = firstName;
-        this.address = address;
-        this.phone = phone;
-        this.hireDate = hireDate;
-        this.fireDate = fireDate;
-        this.status = status;
-        this.contract = contract;
-        this.position = position;
-    }
+	public void setId(long id) {
+		this.id = id;
+	}
 
-    public long getId() {
-        return id;
-    }
+	public int getEntryNumber() {
+		return entryNumber;
+	}
 
-    public void setId(long id) {
-        this.id = id;
-    }
+	public void setEntryNumber(int entryNumber) {
+		this.entryNumber = entryNumber;
+	}
 
-    public int getEntryNumber() {
-        return entryNumber;
-    }
+	public String getLastName() {
+		return lastName;
+	}
 
-    public void setEntryNumber(int entryNumber) {
-        this.entryNumber = entryNumber;
-    }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-    public String getLastName() {
-        return lastName;
-    }
+	public String getFirstName() {
+		return firstName;
+	}
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-    public String getFirstName() {
-        return firstName;
-    }
+	public String getAddress() {
+		return address;
+	}
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
-    public String getAddress() {
-        return address;
-    }
+	public int getPhone() {
+		return phone;
+	}
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
+	public void setPhone(int phone) {
+		this.phone = phone;
+	}
 
-    public int getPhone() {
-        return phone;
-    }
+	public Date getHireDate() {
+		return hireDate;
+	}
 
-    public void setPhone(int phone) {
-        this.phone = phone;
-    }
+	public void setHireDate(Date hireDate) {
+		this.hireDate = hireDate;
+	}
 
-    public Date getHireDate() {
-        return hireDate;
-    }
+	public Date getFireDate() {
+		return fireDate;
+	}
 
-    public void setHireDate(Date hireDate) {
-        this.hireDate = hireDate;
-    }
+	public void setFireDate(Date fireDate) {
+		this.fireDate = fireDate;
+	}
 
-    public Date getFireDate() {
-        return fireDate;
-    }
+	public String getStatus() {
+		return status;
+	}
 
-    public void setFireDate(Date fireDate) {
-        this.fireDate = fireDate;
-    }
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
-    public String getStatus() {
-        return status;
-    }
+	public String getContract() {
+		return contract;
+	}
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+	public void setContract(String contract) {
+		this.contract = contract;
+	}
 
-    public String getContract() {
-        return contract;
-    }
+	public Company getCompany() {
+		return company;
+	}
 
-    public void setContract(String contract) {
-        this.contract = contract;
-    }
+	public void setCompany(Company company) {
+		this.company = company;
+	}
 
-    public Company getCompany() {
-        return company;
-    }
+	public Business getBusiness() {
+		return business;
+	}
 
-    public void setCompany(Company company) {
-        this.company = company;
-    }
+	public void setBusiness(Business business) {
+		this.business = business;
+	}
 
-    public Business getBusiness() {
-        return business;
-    }
+	public Department getDepartment() {
+		return department;
+	}
 
-    public void setBusiness(Business business) {
-        this.business = business;
-    }
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
 
-    public Department getDepartment() {
-        return department;
-    }
+	public Units getUnits() {
+		return units;
+	}
 
-    public void setDepartment(Department department) {
-        this.department = department;
-    }
+	public void setUnits(Units units) {
+		this.units = units;
+	}
 
-    public Units getUnits() {
-        return units;
-    }
+	public String getPosition() {
+		return position;
+	}
 
-    public void setUnits(Units units) {
-        this.units = units;
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
-    }
+	public void setPosition(String position) {
+		this.position = position;
+	}
 }
 

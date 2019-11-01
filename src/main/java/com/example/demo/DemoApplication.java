@@ -7,48 +7,41 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Optional;
 
 @SpringBootApplication
 public class DemoApplication implements CommandLineRunner //to run code in application start up
 {
-	@Autowired
+	final
 	EmployeeRepository employeeRepository;
 
+	final
+	DepartmentRepository departmentRepository;
+
+	public DemoApplication(final EmployeeRepository employeeRepository,
+			final DepartmentRepository departmentRepository) {
+		this.employeeRepository = employeeRepository;
+		this.departmentRepository = departmentRepository;
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
-
-
 	public void run(String... args) throws Exception {
 
-		Company name=new Company("Unisystems");
-		Department section1=new Department("Technology");
-		Department section2=new Department("Leaders");
+		Company newCompany = new Company(1, "Unisystems");
+		Business newBusiness = new Business(1, "Consulting");
+		Department newDepartment = departmentRepository.findById(2L).orElseThrow(() -> new RuntimeException("Wrong query in database"));
 
 
-		Employees kostis = new Employees(1, "Giannopoulos", "Kostis", "salaminos 85", 1234, new Date(2017, Calendar.JANUARY, 17), new Date(2019, Calendar.FEBRUARY, 17),
-				"ACTIVE", "ACTIVE", "IT");
+		Units newUnit = new Units(1, "Unit 1");
 
-		Employees george=new Employees(3,"Karavitis","George","Olynthou 65",5545254,new Date(2017, Calendar.MARCH, 14),null,"ACTIVE","ACTIVE","Manager");
-
-		kostis.setDepartment(section1);
-		george.setDepartment(section2);
-
+		Employees kostis = new Employees(1, "Giannopoulos", "Kostis", "salaminos 85", 1234, new Date(2017, Calendar.JANUARY, 17),
+				new Date(2019, Calendar.FEBRUARY, 17),
+				"ACTIVE", "ACTIVE", newCompany, newBusiness, newDepartment, newUnit, "Manager");
 
 		employeeRepository.save(kostis);
-		employeeRepository.save(george);
-
-		kostis.setCompany(name);
-		george.setCompany(name);
-
-		employeeRepository.save(kostis);
-
-
-
-
 	}
-
 
 }
